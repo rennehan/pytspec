@@ -7,6 +7,10 @@ int gtindex;
 int NTEMP;
 float tcal[100], emean_cal[100];
 
+/**
+ * Converted code from Vikhlinin 2006 to calculate spectroscopic temperature.
+ * - D. Rennehan 2019
+ */
 float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, int nt)
 {
     FILE * calibration_file;
