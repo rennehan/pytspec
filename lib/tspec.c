@@ -11,7 +11,7 @@ float tcal[100], emean_cal[100];
  * Converted code from Vikhlinin 2006 to calculate spectroscopic temperature.
  * - D. Rennehan 2019
  */
-float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, int nt)
+float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, char mode[], int nt)
 {
     FILE * calibration_file;
 
@@ -41,17 +41,45 @@ float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, int n
     //  real n2(nt)   --- array of input emission measures
     //  real tcal(nt), fcont_cal(nt), fline_cal(nt), emean_cal(nt) -- calibration arrays
     //  Tmean, Tcont, Tline --- "spectro-T", "continuum-T", "line-T" (see PAPER)
-    //  The Chandra values are default. @TODO: Allow other instruments.
 
     int i;
     float Tline, Tcont, wcont, wline;
     float acont, beta, delta1, delta2, fcont, fline, x;
     float fluxline, fluxcont, emean;
     float Tmean_ret;
-    acont = 0.875;
-    beta = 1;
-    delta1 = 0.19;
-    delta2 = 0.25;
+
+    if (mode == "xmm/pn" || mode == "XMM/PN")
+    { 
+        acont = 0.79
+        beta = 0.75
+        delta1 = 0.270
+        delta2 = 0.225
+    } else if (mode == "xmm/mos" || mode == "xmm/mos") {
+        acont = 0.90
+        beta = 1
+        delta1 = 0.19
+        delta2 = 0.22
+    } else if (mode == "xmm/mos+pn" || mode == "XMM/MOS+PN") {
+        acont = 0.91
+        beta = 0.90
+        delta1 = 0.19
+        delta2 = 0.21
+    } else if (mode == "asca/sis" || mode == "ASCA/SIS") {
+        acont = 0.875
+        beta = 0.80
+        delta1 = 0.20
+        delta2 = 0.22
+    } else if (mode == "asca/gis" || mode == "ASCA/GIS") {
+        acont = 0.79
+        beta = 0.75
+        delta1 = 0.26
+        delta2 = 0.30
+    } else { /* Chandra */
+        acont = 0.875;
+        beta = 1;
+        delta1 = 0.19;
+        delta2 = 0.25;
+    }
 
     wline = 0.0;
     wcont = 0.0;
@@ -116,7 +144,7 @@ void find_temp_index(float temperature)
         for (i = 1; i < NTEMP; i++)
         {
 	    // The temperature values are ascendingly ordered. Break out of the loop
-	    // when we exceed the particule temperature
+	    // when we exceed the particle temperature
 	    if (tcal[i] > temperature)
 	    {
 	        gtindex = i - 1;
@@ -146,7 +174,7 @@ void find_energy_index(float energy)
         for (i = 1; i < NTEMP ; i++)
         {
             // The temperature values are ascendingly ordered. Break out of the loop
-            // when we exceed the particule temperature
+            // when we exceed the particle temperature
             if (emean_cal[i] > energy)
             {
                 gtindex = i - 1;

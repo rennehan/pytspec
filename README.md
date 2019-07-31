@@ -8,16 +8,16 @@ Simply run "make" in the top-level directory after cloning, and it will install 
 
 Once installed, you can import pytspec into any Python code. The code requires calibration files following Vikhlinin (2006), who provides the "mk_cal" software. See their paper for more info.
 
-Here is an example script with fake data. The list could be simulation data of all of the gas within a cluster, for example. These must be converted to Python arrays in order to pass to the C code.
+Here is an example script with fake data. The list could be simulation data of all of the gas within a cluster, for example. These must be converted to Python arrays in order to pass to the C code. *emission_measure* is $\int n_\mathrm{h} n_\mathrm{e} \mathrm{d}V$.
 
 ```python
 import pytspec
 import array
 
-calibration = b'test.dat'  # b so we can pass to C
-temperatures = array.array('f', [1e5, 1e6, 1e7])
-abundances = array.array('f', [0.1, 0.1, 0.1])
-nh2 = array.array('f', [0.001, 0.001, 0.001])
+calibration = b'test.dat'                                       # b so we can pass to C
+temperatures = array.array('f', [0.3, 0.3, 0.3])                # in keV
+abundances = array.array('f', [0.1, 0.1, 0.1])                  # in Solar 
+emission_measures = array.array('f', [0.2, 0.2, 0.2])      # \int nh * ne * dV
 
-tspec = pytspec.calculate(calibration, temperatures, abundances, nh2)
+tspec = pytspec.calculate(calibration, temperatures, abundances, emission_measures)
 ```
