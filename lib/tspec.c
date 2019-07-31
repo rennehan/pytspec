@@ -50,30 +50,30 @@ float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, char 
 
     if (mode == "xmm/pn" || mode == "XMM/PN")
     { 
-        acont = 0.79
-        beta = 0.75
-        delta1 = 0.270
-        delta2 = 0.225
+        acont = 0.79;
+        beta = 0.75;
+        delta1 = 0.270;
+        delta2 = 0.225;
     } else if (mode == "xmm/mos" || mode == "xmm/mos") {
-        acont = 0.90
-        beta = 1
-        delta1 = 0.19
-        delta2 = 0.22
+        acont = 0.90;
+        beta = 1;
+        delta1 = 0.19;
+        delta2 = 0.22;
     } else if (mode == "xmm/mos+pn" || mode == "XMM/MOS+PN") {
-        acont = 0.91
-        beta = 0.90
-        delta1 = 0.19
-        delta2 = 0.21
+        acont = 0.91;
+        beta = 0.90;
+        delta1 = 0.19;
+        delta2 = 0.21;
     } else if (mode == "asca/sis" || mode == "ASCA/SIS") {
-        acont = 0.875
-        beta = 0.80
-        delta1 = 0.20
-        delta2 = 0.22
+        acont = 0.875;
+        beta = 0.80;
+        delta1 = 0.20;
+        delta2 = 0.22;
     } else if (mode == "asca/gis" || mode == "ASCA/GIS") {
-        acont = 0.79
-        beta = 0.75
-        delta1 = 0.26
-        delta2 = 0.30
+        acont = 0.79;
+        beta = 0.75;
+        delta1 = 0.26;
+        delta2 = 0.30;
     } else { /* Chandra */
         acont = 0.875;
         beta = 1;
