@@ -8,7 +8,7 @@ Simply run "make" in the top-level directory after cloning, and it will install 
 
 Once installed, you can import pytspec into any Python code. The code requires calibration files following Vikhlinin (2006), who provides the "mk_cal" software. See their paper for more info.
 
-Here is an example script with fake data. The list could be simulation data of all of the gas within a cluster, for example. These must be converted to Python arrays in order to pass to the C code. *emission_measure* is $\int n_\mathrm{h} n_\mathrm{e} \mathrm{d}V$.
+Here is an example script with fake data. The list could be simulation data of all of the gas within a cluster, for example. These must be converted to Python arrays in order to pass to the C code. *emission_measure* is $$\int n_\mathrm{h} n_\mathrm{e} \mathrm{d}V$$.
 
 ```python
 import pytspec
