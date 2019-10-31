@@ -96,6 +96,15 @@ float calculate_tspec(char cal_file_name[], float *t, float *a, float *n2, char 
 	fline = fline_cal[gtindex] + (t[i] - tcal[gtindex]) / (tcal[gtindex + 1] - tcal[gtindex]) * (fline_cal[gtindex + 1] - fline_cal[gtindex]);
 	emean = emean_cal[gtindex] + (t[i] - tcal[gtindex]) / (tcal[gtindex + 1] - tcal[gtindex]) * (emean_cal[gtindex + 1] - emean_cal[gtindex]);
 
+        if (fcont < 0)
+        {
+            fcont = 1e-20;
+        }
+        if (fline < 0)
+        {
+            fline = 1e-20;
+        }
+
         //     Multiply fluxes by emission measure and metallicity
         fcont = fcont * n2[i];
         fline = fline * n2[i] * a[i];
